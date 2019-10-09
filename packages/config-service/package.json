@@ -1,0 +1,11 @@
+{
+  "name": "@ui-tests/config-service",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "private": true,
+  "scripts": {},
+  "dependencies": {
+    "envalid": "^5.0.0"
+  }
+}

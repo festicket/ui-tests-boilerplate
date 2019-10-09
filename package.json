@@ -1,0 +1,55 @@
+{
+  "name": "ui-tests-boilerplate",
+  "version": "1.0.0",
+  "main": "",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "bootstrap": "lerna bootstrap --use-workspaces",
+    "selenium:grid:check": "./scripts/ci/before-build/selenium-grid-health-check.sh",
+    "test": "wdio",
+    "test:ci": "wdio --suite suite",
+    "test:selenoid": "IS_SELENOID=true ./scripts/ci/test/test-selenoid.sh",
+    "report": "yarn report:saveHistory && yarn report:generate && yarn report:clear && yarn report:open",
+    "report:ci": "yarn report:saveHistory && yarn report:generate && yarn report:clear",
+    "report:saveHistory": "mkdir -p allure-report/history && cp -r allure-report/history/. allure-results/history/",
+    "report:generate": "allure generate --clean allure-results -o allure-report",
+    "report:clear": "rm -rf allure-results",
+    "report:open": "allure open allure-report",
+    "lint": "tslint --fix 'test/**/*.ts' && tslint --fix 'src/**/*.ts'"
+  },
+  "dependencies": {
+    "@types/chai": "^4.2.3",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.7.12",
+    "@wdio/allure-reporter": "^5.14.4",
+    "@wdio/cli": "^5.14.4",
+    "@wdio/local-runner": "^5.14.4",
+    "@wdio/mocha-framework": "^5.14.4",
+    "@wdio/selenium-standalone-service": "^5.13.2",
+    "@wdio/spec-reporter": "^5.14.4",
+    "@wdio/sync": "^5.14.4",
+    "allure-commandline": "^2.9.0",
+    "chai": "^4.1.2",
+    "lodash": "^4.17.10",
+    "mocha": "^6.2.0",
+    "netlify-cli": "^2.11.23",
+    "node-fetch": "^2.6.0",
+    "request": "^2.87.0",
+    "selenium-standalone": "^6.16.0",
+    "ts-node": "^8.4.1",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.6.3",
+    "wdio-reportportal-reporter": "^5.0.2",
+    "wdio-reportportal-service": "^5.0.2",
+    "webdriverio": "^5.13.2"
+  },
+  "devDependencies": {
+    "lerna": "^3.14.1",
+    "tslint": "^5.20.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.0.1"
+  }
+}

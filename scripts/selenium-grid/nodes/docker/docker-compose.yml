@@ -1,0 +1,37 @@
+# To execute this docker-compose yml file use `docker-compose -f <file_name> up`
+# Add the `-d` flag at the end for detached execution
+
+# Scaling the grid on demand
+# $ docker-compose scale [browser_name]=5 (e.g. chrome=5)
+# Spawns four additional node-chrome instances linked to the hub
+
+version: '3'
+services:
+  chrome:
+    image: selenium/node-chrome:3.141.59-selenium
+    ports:
+      - '5556:5556'
+    volumes:
+      - /dev/shm:/dev/shm
+    environment:
+      - HUB_HOST=[hub-ip]
+      - HUB_PORT=4444
+      - NODE_PORT=5556
+      - REMOTE_HOST=http://[node-ip]:5556
+      - NODE_MAX_INSTANCES=1
+      - NODE_MAX_SESSION=1
+      - SE_OPTS= -browserTimeout 200 -timeout 180
+  firefox:
+    image: selenium/node-firefox:3.14.0-gallium
+    ports:
+      - '5557:5557'
+    volumes:
+      - /dev/shm:/dev/shm
+    environment:
+      - HUB_HOST=[hub-ip]
+      - HUB_PORT=4444
+      - NODE_PORT=5557
+      - REMOTE_HOST=http://[node-ip]:5557
+      - NODE_MAX_INSTANCES=1
+      - NODE_MAX_SESSION=1
+      - SE_OPTS= -browserTimeout 200 -timeout 180

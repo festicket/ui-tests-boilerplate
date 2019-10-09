@@ -1,0 +1,13 @@
+{
+  "name": "@ui-tests/api-service",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "private": true,
+  "scripts": {},
+  "dependencies": {
+    "@ui-tests/config-service": "^0.0.1",
+    "@ui-tests/logger": "^0.0.1",
+    "request": "^2.88.0"
+  }
+}
